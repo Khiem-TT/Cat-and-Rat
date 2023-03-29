@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cat and Mouse</title>
+</head>
+<body>
+<script>
+    class Rat {
+        namerat;
+        weightrat;
+        speedrat;
+        status;
+
+        constructor(name, weight, speed) {
+            this.namerat = name;
+            this.weightrat = weight;
+            this.speedrat = speed;
+        }
+
+        ratSounding() {
+            alert('chit chit');
+        }
+
+        die() {
+            return this.status = false;
+        }
+
+        noDie() {
+            return this.status = true;
+        }
+
+        getStatus() {
+            if (this.status) {
+                alert('Live rat');
+            } else {
+                alert('Dead rat');
+            }
+        }
+    }
+
+    class Cat {
+        namecat;
+        weightcat;
+        speedcat;
+        rat;
+
+        constructor(name, weight, speed, rat) {
+            this.namecat = name;
+            this.weightcat = weight;
+            this.speedcat = speed;
+            this.rat = rat;
+        }
+
+        catSounding() {
+            return 'meo meo';
+        }
+
+        getWeightCat() {
+            return this.weightcat;
+        }
+
+        actionCat() {
+            alert(this.catSounding());
+        }
+
+        catchRat() {
+            if (this.speedcat > this.rat.speedrat) {
+                alert('The cat caught the rat');
+            } else {
+                alert("The cat can't catch the rat");
+            }
+        }
+
+        eatRat() {
+            if (this.rat.status) {
+                this.weightcat += this.rat.weightrat;
+                this.rat.status = false;
+                alert('The rat was eaten by the cat');
+            }
+        }
+    }
+
+    let rat = new Rat("Jerry", 10, 100);
+    let cat = new Cat("Tom", 20, 200, rat);
+
+    rat.noDie();
+
+    cat.actionCat();
+    rat.ratSounding();
+
+    cat.catchRat();
+    cat.eatRat();
+    alert(`Cat's weight: ${cat.getWeightCat()}`);
+    rat.getStatus();
+</script>
+</body>
+</html>
